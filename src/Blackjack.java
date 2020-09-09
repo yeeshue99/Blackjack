@@ -41,7 +41,7 @@ public class Blackjack {
 		this.numPlayers = numPlayers;
 		deck = new Deck();
 		System.out.println("Dealing the deck evenly to every player...");
-		allHands = Deck.DealCards(numPlayers);
+		allHands = Deck.DealCards(numPlayers, false);
 		for (int i = 0; i < numPlayers; i++) {
 			if(i == 0) {
 				System.out.println("The dealer's cards are:");

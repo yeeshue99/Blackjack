@@ -12,7 +12,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 
 /*
@@ -35,7 +37,7 @@ public class Deck {
 	
 	// Container to hold all cards
 	public static ArrayList<Card> deck = new ArrayList<Card>();
-	public static ArrayList<Card> discard = new ArrayList<Card>();
+	public static Deque<Card> discard = new LinkedList<Card>();
 	public static ArrayList<ArrayList<Card>> melds = new ArrayList<ArrayList<Card>>();
 	private static ArrayList<String> meldType = new ArrayList<String>();
 	
@@ -128,7 +130,7 @@ public class Deck {
 	 * Purpose: 			Evenly split every card from the center deck to each hand 
 	 * Returns:				Each hand
 	 */
-	public static ArrayList<ArrayList<Card>> DealCards(int numPlayers) {
+	public static ArrayList<ArrayList<Card>> DealCards(int numPlayers, boolean DISCARD) {
 		ArrayList<ArrayList<Card>> hands = new ArrayList<ArrayList<Card>>();
 		
 		for (int i = 0; i < numPlayers; i++) {
@@ -161,8 +163,9 @@ public class Deck {
 			}
 
 		}
-		discard.add(deck.get(0));
-		deck.remove(0);
+		if(DISCARD) {
+			discard.addFirst(deck.remove(0));
+		}
 		System.out.println();
 		return hands;
 	}
